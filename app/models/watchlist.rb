@@ -1,4 +1,5 @@
 class Watchlist < ApplicationRecord
   belongs_to :user
-  belongs_to :stock
+  has_many :watch_stocks
+  has_many :stocks, through: :watch_stocks
 end

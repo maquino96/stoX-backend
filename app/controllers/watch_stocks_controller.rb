@@ -1,0 +1,2 @@
+class WatchStocksController < ApplicationController
+end
