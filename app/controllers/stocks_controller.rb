@@ -28,4 +28,27 @@ class StocksController < ApplicationController
         end 
     end 
 
+    def similar
+
+        response = HTTParty.get("https://api.polygon.io/v1/meta/symbols/#{params[:symbol]}/company?&apiKey=#{ENV['polygon_key']}")
+        
+        similar = { similar: response['similar'], string: response['similar'].join(",") }
+        if similar 
+            render json: similar
+        else 
+            render json: false
+        end 
+    end 
+
+    def batch
+        client = IEX::Api::Client.new()
+        results = client.get("/stock/market/batch?symbols=#{params[:symbols]}&types=quote", token: ENV['iex_publish'])
+        if results 
+            render json: results
+        else 
+            render json: false
+        end 
+    end 
+
+
 end

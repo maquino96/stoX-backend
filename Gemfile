@@ -46,3 +46,5 @@ gem "active_model_serializers", "~> 0.10.12"
 gem 'iex-ruby-client'
 
 gem 'figaro'
+
+gem 'httparty'

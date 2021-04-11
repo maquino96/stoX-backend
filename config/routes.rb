@@ -8,5 +8,12 @@ Rails.application.routes.draw do
 
   get '/stocks/:symbol', to: 'stocks#show'
   get '/stockdata/:symbol', to: 'stocks#data'
+  get 'similarstock/:symbol', to: 'stocks#similar'
+  get '/batch/:symbols', to: 'stocks#batch'
+
+  post '/users/login', to: 'users#login'
+
+  # post with watchlist id ? in order to identify which list to add the new stock to?
+  post '/addtowatchlist/:id', to: 'watch_stocks#add'
 
 end
