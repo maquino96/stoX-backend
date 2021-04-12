@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Stock.create(companyName: 'testStock')
+# Stock.create(companyName: 'testStock')
 User.create(username: 'Matt', password: '123')
 Watchlist.create(user_id: 1, name: 'default')
-WatchStock.create(watchlist_id: 1, stock_id: 1)
+# WatchStock.create(watchlist_id: 1, stock_id: 1)
 Comment.create(user_id: 1, watchlist_id: 1, body: 'Wow it really works')
