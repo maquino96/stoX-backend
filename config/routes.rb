@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   # post with watchlist id ? in order to identify which list to add the new stock to?
   post '/addtowatchlist/:id', to: 'watch_stocks#add'
 
+
+  post '/newlist', to: 'watchlists#create'
+  delete '/deleteList/:id', to: 'watchlists#delete'
+
 end
