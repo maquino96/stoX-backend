@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/stockdata/:symbol', to: 'stocks#data'
   get 'similarstock/:symbol', to: 'stocks#similar'
   get '/batch/:symbols', to: 'stocks#batch'
+  get '/chartdata/:symbol', to: 'stocks#chart'
 
   post '/users/login', to: 'users#login'
   post '/users/signup', to: 'users#signup'

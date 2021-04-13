@@ -50,5 +50,21 @@ class StocksController < ApplicationController
         end 
     end 
 
+    def chart
+        client = IEX::Api::Client.new()
+        data = client.get("/stock/#{params[:symbol]}/intraday-prices/chartIEXOnly=true", token: ENV['iex_publish'])
+        chartRender = { 
+            minutesX: data.map{ |point| point['minute'] },
+            averageY: data.map{ |point| point['average'] },
+            volumeY: data.map{ |point| point['volume'] }
+        }
+        # puts chartRender
+        if chartRender 
+            render json: chartRender
+        else
+            render json: false
+        end 
+    end 
+
 
 end
