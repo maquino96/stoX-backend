@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
 
   post '/newlist', to: 'watchlists#create'
+  patch '/watchlists/:id', to: 'watchlists#update'
   delete '/deleteList/:id', to: 'watchlists#delete'
+
 
 end
