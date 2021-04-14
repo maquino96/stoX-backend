@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   post '/users/login', to: 'users#login'
   post '/users/signup', to: 'users#signup'
+  patch '/users/:id', to: 'users#update'
 
   # post with watchlist id ? in order to identify which list to add the new stock to?
   post '/addtowatchlist/:id', to: 'watch_stocks#add'

@@ -8,13 +8,13 @@
 
 
 # Stock.create(companyName: 'testStock')
-User.create(username: 'Matt', password: '123')
-Watchlist.create(user_id: 1, name: 'default')
+# User.create(username: 'Matt', password: '123')
+# Watchlist.create(user_id: 1, name: 'default')
 
 
-Comment.create(user_id: 1, watchlist_id: 1, body: 'Wow it really works')
+# Comment.create(user_id: 1, watchlist_id: 1, body: 'Wow it really works')
 
-test = Watchlist.create(user_id: 1, name: 'Test List')
+# test = Watchlist.create(user_id: 1, name: 'Test List')
 
 # WatchStock.create(watchlist_id: test.id, stock_id: 1)
 # WatchStock.create(watchlist_id: test.id, stock_id: 2)

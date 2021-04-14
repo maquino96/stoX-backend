@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_07_003911) do
+ActiveRecord::Schema.define(version: 2021_04_14_010814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_04_07_003911) do
     t.string "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "upvotes"
     t.index ["user_id"], name: "index_comments_on_user_id"
     t.index ["watchlist_id"], name: "index_comments_on_watchlist_id"
   end
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_04_07_003911) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "onLoadWatchlist", default: "Default"
   end
 
   create_table "watch_stocks", force: :cascade do |t|
@@ -59,6 +61,9 @@ ActiveRecord::Schema.define(version: 2021_04_07_003911) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
+    t.integer "upvotes", default: 0
+    t.boolean "public"
     t.index ["user_id"], name: "index_watchlists_on_user_id"
   end
 

@@ -6,11 +6,12 @@ class WatchStocksController < ApplicationController
         
         @user = User.find_by(username: @watch_stock.watchlist.user.username)
         watchlists = @user.watchlists.pluck(:name)
-        stocksInWatchlist = @user.watchlists.map{ |watchlist| {id: watchlist.id, arrayList: watchlist.stocks.pluck(:symbol)} }
+        stocksInWatchlist = @user.watchlists.map{ |watchlist| {id: watchlist.id, arrayList: watchlist.stocks.pluck(:symbol), upvotes: watchlist.upvotes, public: watchlist.public, description: watchlist.description} }
 
         userRender = { 
             id: @user.id, 
             name: @user.username,
+            loadwatchlist: @user.onLoadWatchlist,
             watchlists: Hash[watchlists.zip(stocksInWatchlist)]
         }
 
