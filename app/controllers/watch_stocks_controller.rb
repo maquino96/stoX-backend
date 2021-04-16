@@ -1,7 +1,13 @@
 class WatchStocksController < ApplicationController
 
     def add
-        @stock = Stock.create(stock_params)
+
+        if Stock.find_by(symbol: params[:symbol])
+            @stock=Stock.find_by(symbol: params[:symbol])
+        else 
+            @stock = Stock.create(stock_params)
+        end
+
         @watch_stock = WatchStock.create(watchlist_id: params[:id], stock_id: @stock.id)
         
         @user = User.find_by(username: @watch_stock.watchlist.user.username)
@@ -24,7 +30,9 @@ class WatchStocksController < ApplicationController
 
     def delete
         @stock = Stock.find_by(symbol: params[:symbol])
-        @watch_stock = WatchStock.select{ |instance| (instance.watchlist_id = params[:list] && instance.stock_id = @stock.id) }[0]
+        @watch_stock = WatchStock.select{ |instance| (instance.watchlist_id == params[:list].to_i && instance.stock_id == @stock.id) }[0]
+
+        # byebug
 
         @watch_stock.destroy
 
