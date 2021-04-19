@@ -57,6 +57,24 @@ class StocksController < ApplicationController
         else
             render json: false
         end 
+    end
+    
+    def treemap
+        client = IEX::Api::Client.new()
+        results = client.get("/stock/market/batch?symbols=XLC,XLY,XLP,XLE,XLF,XLV,XLI,XLB,XLRE,XLK,XLU&types=quote", token: ENV['iex_publish'])
+        map = results.map { |k,v| { label: "#{v['quote']['symbol']} -- #{v['quote']['companyName']}", value: v['quote']['latestPrice'], svalue: '%.2f' % ((v['quote']['changePercent']*100).to_f) }}   
+        sum = results.values.map{ |q| q['quote']['latestPrice'] }.sum
+        treemap = { 
+            sum: sum,
+            data: map
+        }
+        # puts treemap
+
+        if treemap
+            render json: treemap
+        else 
+            render json: false
+        end 
     end 
 
 
