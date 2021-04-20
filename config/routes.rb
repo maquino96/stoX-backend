@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/batch/:symbols', to: 'stocks#batch'
   get '/chartdata/:symbol', to: 'stocks#chart'
   get '/treemapdata', to: 'stocks#treemap'
+  get '/news/:symbols', to: 'stocks#news'
 
   post '/users/login', to: 'users#login'
   post '/users/signup', to: 'users#signup'

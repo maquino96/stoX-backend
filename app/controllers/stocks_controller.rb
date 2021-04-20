@@ -77,5 +77,20 @@ class StocksController < ApplicationController
         end 
     end 
 
+    def news
+        client = IEX::Api::Client.new()
+        results = client.get("/stock/market/batch?symbols=#{params[:symbols]}&types=news&last=2", token: ENV['iex_publish'])
+        newsarray = []
+        results.each{ |k,v| v['news'].each{ |stocknews| newsarray.push(stocknews) }}
+        puts newsarray
+        # puts results
+
+        if results 
+            render json: newsarray
+        else 
+            render json: false
+        end 
+    end 
+
 
 end
