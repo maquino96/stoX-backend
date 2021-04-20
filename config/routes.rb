@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/chartdata/:symbol', to: 'stocks#chart'
   get '/treemapdata', to: 'stocks#treemap'
   get '/news/:symbols', to: 'stocks#news'
+  get '/alt/:symbol', to: 'stocks#alt'
 
   post '/users/login', to: 'users#login'
   post '/users/signup', to: 'users#signup'

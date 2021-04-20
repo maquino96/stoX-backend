@@ -2,14 +2,30 @@ class StocksController < ApplicationController
 
     def show 
         client = IEX::Api::Client.new
-        stockapi = client.company(params[:symbol])
-  
-        if stockapi 
+            stockapi = client.company(params[:symbol])
+           
+        if 
             render json: stockapi
         else 
             render json: false
         end 
+
     end 
+
+    def alt
+        alternate = HTTParty.get("https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=#{params[:symbol]}&apikey=#{ENV['alphavantage_key']}")
+        # byebug
+        altArray = alternate['bestMatches'].map{ |obj|  obj['1. symbol'] }
+        
+        if altArray
+            render json: altArray
+        else 
+            render json: false
+        end 
+    end 
+    
+
+
 
     def data
         client = IEX::Api::Client.new
@@ -82,7 +98,7 @@ class StocksController < ApplicationController
         results = client.get("/stock/market/batch?symbols=#{params[:symbols]}&types=news&last=2", token: ENV['iex_publish'])
         newsarray = []
         results.each{ |k,v| v['news'].each{ |stocknews| newsarray.push(stocknews) }}
-        puts newsarray
+        # puts newsarray
         # puts results
 
         if results 
