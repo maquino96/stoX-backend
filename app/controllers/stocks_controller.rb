@@ -93,7 +93,6 @@ class StocksController < ApplicationController
             sum: sum,
             data: map
         }
-        # puts treemap
 
         if treemap
             render json: treemap
